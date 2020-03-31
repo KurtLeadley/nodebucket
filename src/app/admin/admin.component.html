@@ -1,0 +1,66 @@
+<h1>Admin Panel</h1>
+<mat-form-field>
+  <mat-select placeholder="Select Employee" [(ngModel)]="selectedEmployee" (ngModelChange)="changeEmployee()">
+    <mat-option *ngFor="let employee of employees" [value]="employee.eId">
+      {{employee.email}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<app-task-list *ngIf="chosenEmployee == null || chosenEmployee == 'All'"></app-task-list>
+<p class="info-text mat-body-1" *ngIf="chosenEmployee != null && chosenEmployee != 'All' && openTasks.length <= 0 && closedTasks.length <=0">No Tasks Exist</p>
+<div class="task-grid" *ngIf="chosenEmployee != null && chosenEmployee != 'All' && (openTasks.length > 0 || closedTasks.length > 0)">
+  <div class="task-container">
+    <h2>Open Tasks</h2>
+
+    <div
+      cdkDropList
+      id="todoList"
+      [cdkDropListData]="openTasks"
+      [cdkDropListConnectedTo]="['doneList']"
+      class="task-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="task-box" *ngFor="let openTask of openTasks" cdkDrag id={{openTask._id}}>
+        <mat-card class="task-card">
+          <mat-card-title>
+            Task: {{openTask.title}}
+          </mat-card-title>
+          <mat-card-content>
+            Description: {{openTask.content}}
+          </mat-card-content>
+          <mat-action-row>
+            <a mat-button color="white" [routerLink]="['/edit', openTask._id]">EDIT</a>
+            <button mat-button color="white" (click)="onDelete(openTask._id)">DELETE</button>
+          </mat-action-row>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+
+  <div class="task-container">
+    <h2>Closed Tasks</h2>
+    <div
+      cdkDropList
+      id="doneList"
+      [cdkDropListData]="closedTasks"
+      [cdkDropListConnectedTo]="['todoList']"
+      class="task-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="task-box" *ngFor="let closedTask of closedTasks" cdkDrag id={{closedTask._id}}>
+        <mat-card class="task-card">
+          <mat-card-title>
+            Task: {{closedTask.title}}
+          </mat-card-title>
+          <mat-card-content>
+            Description: {{closedTask.content}}
+          </mat-card-content>
+          <mat-action-row>
+            <a mat-button color="white" [routerLink]="['/edit', closedTask._id]">EDIT</a>
+            <button mat-button color="white" (click)="onDelete(closedTask._id)">DELETE</button>
+          </mat-action-row>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,55 @@
+<h2 *ngIf="showHeader === true">Tasks for {{email}}</h2>
+<div class="task-grid">
+  <div class="task-container">
+    <h2 class="task-header">Open Tasks</h2>
+    <div
+      cdkDropList
+      id="todoList"
+      [cdkDropListData]="openTasks"
+      [cdkDropListConnectedTo]="['doneList']"
+      class="task-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="task-box" *ngFor="let openTask of openTasks" cdkDrag id={{openTask._id}}>
+        <mat-card class="task-card">
+          <mat-card-title>
+            Task: {{openTask.title}}
+          </mat-card-title>
+          <mat-card-content>
+            Description: {{openTask.content}}
+          </mat-card-content>
+          <mat-action-row *ngIf="(employeeIsAuthenticated && (eId === openTask.creator || isAdmin == 'true'))">
+            <a mat-button color="white" [routerLink]="['/edit', openTask._id]">EDIT</a>
+            <button mat-button color="white" (click)="onDelete(openTask._id)">DELETE</button>
+          </mat-action-row>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+
+  <div class="task-container">
+    <h2 class="task-header">Closed Tasks</h2>
+    <div
+      cdkDropList
+      id="doneList"
+      [cdkDropListData]="closedTasks"
+      [cdkDropListConnectedTo]="['todoList']"
+      class="task-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="task-box" *ngFor="let closedTask of closedTasks" cdkDrag id={{closedTask._id}}>
+        <mat-card class="task-card">
+          <mat-card-title>
+            Task: {{closedTask.title}}
+          </mat-card-title>
+          <mat-card-content>
+            Description: {{closedTask.content}}
+          </mat-card-content>
+          <mat-action-row *ngIf="(employeeIsAuthenticated && (eId === closedTask.creator || isAdmin == 'true'))">
+            <a mat-button color="white" [routerLink]="['/edit', closedTask._id]">EDIT</a>
+            <button mat-button color="white" (click)="onDelete(closedTask._id)">DELETE</button>
+          </mat-action-row>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
+

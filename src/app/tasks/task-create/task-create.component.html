@@ -1,0 +1,26 @@
+<mat-card>
+  <mat-card-title *ngIf="router.url.startsWith('/create')">Create New Task</mat-card-title>
+  <mat-card-title *ngIf="router.url.startsWith('/edit')">Edit Task</mat-card-title>
+  <form [formGroup]="form" (submit)="onSaveTask()">
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        formControlName = "title"
+        placeholder="Task Title">
+      <mat-error *ngIf="form.get('title').invalid">Please enter a post title.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <textarea
+        matInput
+        rows="4"
+        formControlName = "content"
+        placeholder="Task Description"></textarea>
+      <mat-error *ngIf="form.get('content').invalid">Please enter a task title.</mat-error>
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="accent"
+      type="submit">Save Task</button>
+  </form>
+</mat-card>

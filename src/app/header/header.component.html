@@ -1,0 +1,34 @@
+<mat-toolbar color="primary">
+  <span>
+    <a  mat-button routerLink="/">Nodebucket Task Manager</a>
+  </span>
+  <span class="spacer"></span>
+  <ul>
+    <li *ngIf="employeeIsAuthenticated">
+      Employee: {{email}} (#{{eId}})
+    </li>
+    <li *ngIf="employeeIsAuthenticated">
+      <button mat-button [matMenuTriggerFor]="tasks" routerLinkActive="mat-accent">Tasks</button>
+      <mat-menu #tasks="matMenu" >
+        <a mat-button routerLink="/alltasks" routerLinkActive="mat-accent">All Tasks</a>
+        <a mat-button routerLink="/mytasks/{{eId}}" routerLinkActive="mat-accent">My Tasks</a>
+        <a mat-button routerLink="/create" routerLinkActive="mat-accent">New Task</a>
+      </mat-menu>
+    </li>
+    <li *ngIf="employeeIsAuthenticated && isAdmin == 'true'">
+      <a mat-button routerLink="/admin" routerLinkActive="mat-accent">Admin</a>
+    </li>
+    <li>
+      <a mat-button routerLink="/" routerLinkActive="mat-accent" [routerLinkActiveOptions]="{ exact: true }">About</a>
+    </li>
+    <li *ngIf="!employeeIsAuthenticated">
+      <a mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>
+    </li>
+    <li *ngIf="!employeeIsAuthenticated">
+      <a mat-button routerLink="/signup" routerLinkActive="mat-accent">Register</a>
+    </li>
+    <li *ngIf="employeeIsAuthenticated">
+      <button mat-button (click)="onLogout()">Logout</button>
+    </li>
+  </ul>
+</mat-toolbar>
