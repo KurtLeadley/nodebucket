@@ -12,6 +12,9 @@ import { Router } from "@angular/router";
 
 import { Task } from "./task.model";
 import { AuthService } from 'src/app/auth/auth.service';
+import { environment } from '../../environments/environment';
+
+const BACKEND_URL =  environment.apiUrl + "/tasks";
 
 @Injectable({ providedIn: "root" })
 export class TasksService {
@@ -25,7 +28,7 @@ export class TasksService {
   // gets all tasks
   getTasks() {
     this.http
-      .get<{ message: string; tasks: any }>("http://localhost:3000/api/tasks/alltasks")
+      .get<{ message: string; tasks: any }>(BACKEND_URL +"/alltasks")
       .pipe(
         map(taskData => {
           return taskData.tasks.map(task => {
@@ -47,7 +50,7 @@ export class TasksService {
  // get tasks for single employee
   getAllMyTasks(creator: string) {
     this.http
-      .get<{ message: string; tasks: any }>("http://localhost:3000/api/tasks/mytasks/"+creator)
+      .get<{ message: string; tasks: any }>(BACKEND_URL +"/mytasks/"+creator)
       .pipe(
         map(taskData => {
           return taskData.tasks.map(task => {
@@ -70,12 +73,12 @@ export class TasksService {
 
   // get open tasks
   getMyOpenTasks(creator: string) {
-    return this.http.get<{ message: string; tasks: any }>("http://localhost:3000/api/tasks/myopentasks/"+creator)
+    return this.http.get<{ message: string; tasks: any }>(BACKEND_URL +"/myopentasks/"+creator)
   }
 
   // get closed tasks
   getMyClosedTasks(creator: string) {
-    return this.http.get<{ message: string; tasks: any }>("http://localhost:3000/api/tasks/myclosedtasks/"+creator);
+    return this.http.get<{ message: string; tasks: any }>(BACKEND_URL +"/myclosedtasks/"+creator);
   }
 
   // returns an observable for subscribed listeners. Section 2.28 from Udemy class
@@ -90,9 +93,7 @@ export class TasksService {
       content: string;
       creator: string;
       done: boolean;
-      }>(
-      "http://localhost:3000/api/tasks/" + id
-    );
+      }>(BACKEND_URL + "/" + id);
   }
 
   // create a task
@@ -100,7 +101,7 @@ export class TasksService {
     const task: Task = { id: null, title: title, content: content, creator: creator,  done: done};
     this.http
       .post<{ message: string; taskId: string }>(
-        "http://localhost:3000/api/tasks",
+        BACKEND_URL,
         task
       )
       .subscribe(responseData => {
@@ -117,7 +118,7 @@ export class TasksService {
     this.isAdmin = this.authService.getIsAdmin();
     const task: Task = { id: id, title: title, content: content, creator:creator, done: done };
     this.http
-      .put("http://localhost:3000/api/tasks/" + id, task)
+      .put(BACKEND_URL + "/" + id, task)
       .subscribe(response => {
         const updatedTasks = [...this.tasks];
         const oldTaskIndex = updatedTasks.findIndex(t => t.id === task.id);
@@ -139,7 +140,7 @@ export class TasksService {
  // delete a task
   deleteTask(taskId: string) {
     this.http
-      .delete("http://localhost:3000/api/tasks/" + taskId)
+      .delete(BACKEND_URL + "/" + taskId)
       .subscribe(() => {
         const updatedTasks = this.tasks.filter(task => task.id !== taskId);
         this.tasks = updatedTasks;

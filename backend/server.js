@@ -7,7 +7,7 @@
 // npm install --save-dev nodemon to enable automatic server side code updates
 // then start the server once with npm run start:server
 // start:server is defined in package.json and references this file
-const app = require("./backend/app");
+const app = require("./app");
 const debug = require("debug")("nodebucket");
 const http = require("http");
 
@@ -49,7 +49,7 @@ const onError = error => {
 
 const onListening = () => {
   const addr = server.address();
-  const bind = typeof port === "string" ? "pipe " + port : "port " + port;
+  const bind = typeof addr === "string" ? "pipe " + port : "port " + port;
   debug("Listening on " + bind);
 };
 

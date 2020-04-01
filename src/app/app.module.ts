@@ -1,4 +1,3 @@
-
 /***********************************
 ; Title:  Main Module
 ; Author: Kurt Leadley
@@ -37,7 +36,6 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { AboutComponent } from './about/about.component';
 import { AdminComponent } from './admin/admin.component';
 import { NotfoundComponent } from './notfound/notfound.component';
-
 
 @NgModule({
   declarations: [
