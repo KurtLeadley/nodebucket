@@ -15,8 +15,7 @@ import { Router } from "@angular/router";
 
 @Component({
   selector: "app-mytask-list",
-  templateUrl: "./mytask-list.component.html",
-  styleUrls: ["./mytask-list.component.css"]
+  templateUrl: "./mytask-list.component.html"
 })
 export class MyTaskListComponent implements OnInit, OnDestroy {
   // will be using these in this class

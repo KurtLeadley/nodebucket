@@ -3,11 +3,11 @@
 <mat-accordion multi="true" *ngIf="allTasks.length > 0">
   <mat-expansion-panel *ngFor="let task of allTasks">
     <mat-expansion-panel-header class='task-title'>
-      <b>Task:</b>&nbsp;{{ task.title }}
+      Creator: {{task.creator}} -&nbsp;&nbsp;{{ task.title }}
     </mat-expansion-panel-header>
-    <p><b>Details:</b></p>
+    <h4>Details:</h4>
     <p>{{ task.content }}</p>
-    <p><b>Completed:</b></p>
+    <h4>Completed:</h4>
     <p>{{ task.done }}</p>
     <mat-action-row *ngIf="(employeeIsAuthenticated && (eId === task.creator || isAdmin == 'true'))">
       <a mat-button color="primary" [routerLink]="['/edit', task.id]">EDIT</a>

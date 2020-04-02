@@ -36,6 +36,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { AboutComponent } from './about/about.component';
 import { AdminComponent } from './admin/admin.component';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { BannerComponent } from './banner/banner.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { NotfoundComponent } from './notfound/notfound.component';
     SignupComponent,
     AboutComponent,
     AdminComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    BannerComponent
   ],
   imports: [
     BrowserModule,

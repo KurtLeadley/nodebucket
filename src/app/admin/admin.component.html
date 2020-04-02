@@ -1,8 +1,8 @@
 <h1>Admin Panel</h1>
 <mat-form-field>
-  <mat-select placeholder="Select Employee" [(ngModel)]="selectedEmployee" (ngModelChange)="changeEmployee()">
+  <mat-select id="admin-select" placeholder="Select Employee" [(ngModel)]="selectedEmployee" (ngModelChange)="changeEmployee()">
     <mat-option *ngFor="let employee of employees" [value]="employee.eId">
-      {{employee.email}}
+      {{employee.email}} ({{employee.eId}})
     </mat-option>
   </mat-select>
 </mat-form-field>
@@ -29,8 +29,8 @@
             Description: {{openTask.content}}
           </mat-card-content>
           <mat-action-row>
-            <a mat-button color="white" [routerLink]="['/edit', openTask._id]">EDIT</a>
-            <button mat-button color="white" (click)="onDelete(openTask._id)">DELETE</button>
+            <a mat-button color="aliceblue" [routerLink]="['/edit', openTask._id]">EDIT</a>
+            <button mat-button color="aliceblue" (click)="onDelete(openTask._id)">DELETE</button>
           </mat-action-row>
         </mat-card>
       </div>
@@ -55,8 +55,8 @@
             Description: {{closedTask.content}}
           </mat-card-content>
           <mat-action-row>
-            <a mat-button color="white" [routerLink]="['/edit', closedTask._id]">EDIT</a>
-            <button mat-button color="white" (click)="onDelete(closedTask._id)">DELETE</button>
+            <a mat-button color="aliceblue" [routerLink]="['/edit', closedTask._id]">EDIT</a>
+            <button mat-button color="aliceblue" (click)="onDelete(closedTask._id)">DELETE</button>
           </mat-action-row>
         </mat-card>
       </div>

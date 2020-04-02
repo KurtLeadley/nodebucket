@@ -18,8 +18,8 @@
             Description: {{openTask.content}}
           </mat-card-content>
           <mat-action-row *ngIf="(employeeIsAuthenticated && (eId === openTask.creator || isAdmin == 'true'))">
-            <a mat-button color="white" [routerLink]="['/edit', openTask._id]">EDIT</a>
-            <button mat-button color="white" (click)="onDelete(openTask._id)">DELETE</button>
+            <a mat-button color="aliceblue" [routerLink]="['/edit', openTask._id]">EDIT</a>
+            <button mat-button color="aliceblue" (click)="onDelete(openTask._id)">DELETE</button>
           </mat-action-row>
         </mat-card>
       </div>
@@ -44,8 +44,8 @@
             Description: {{closedTask.content}}
           </mat-card-content>
           <mat-action-row *ngIf="(employeeIsAuthenticated && (eId === closedTask.creator || isAdmin == 'true'))">
-            <a mat-button color="white" [routerLink]="['/edit', closedTask._id]">EDIT</a>
-            <button mat-button color="white" (click)="onDelete(closedTask._id)">DELETE</button>
+            <a mat-button color="aliceblue" [routerLink]="['/edit', closedTask._id]">EDIT</a>
+            <button mat-button color="aliceblue" (click)="onDelete(closedTask._id)">DELETE</button>
           </mat-action-row>
         </mat-card>
       </div>

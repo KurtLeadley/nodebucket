@@ -18,9 +18,8 @@
         placeholder="Task Description"></textarea>
       <mat-error *ngIf="form.get('content').invalid">Please enter a task title.</mat-error>
     </mat-form-field>
-    <button
+    <button class="submit-button"
       mat-raised-button
-      color="accent"
       type="submit">Save Task</button>
   </form>
 </mat-card>
