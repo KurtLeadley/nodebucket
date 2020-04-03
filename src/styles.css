@@ -1,8 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
-
+html {
+  position: relative;
+  min-height: 100%;
+}
 body {
   margin: 0;
   background-color: #424242;
+  min-height: 100%;
+  margin-bottom: 100px;
 }
 
 h1 {
@@ -26,8 +31,9 @@ p {
 .app-toolbar {
   position: sticky;
   position: -webkit-sticky; /* For macOS/iOS Safari */
-  top: 0; /* Sets the sticky toolbar to be on top */
+  top: 0; 
   z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
+  border-bottom: 1px solid #ffeb3b;
 }
 
 .mat-select-arrow, .ng-tns-c112-14  {

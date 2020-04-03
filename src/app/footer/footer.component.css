@@ -1,0 +1,13 @@
+#footer-grid {
+  background-color: #2196f3;
+  margin:30px 0 0 0;
+  padding: 15px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid #ffeb3b;
+  justify-items: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+}
