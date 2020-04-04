@@ -44,7 +44,7 @@ export class AdminComponent implements OnInit {
   constructor(public employeeService: EmployeeService, private authService: AuthService, public tasksService: TasksService) {}
 
   ngOnInit() {
-
+    // get all the tasks when loading this component
     this.tasksService.getTasks();
     this.tasksSub = this.tasksService.getTaskUpdateListener()
       .subscribe((allTasks: Task[]) => {
@@ -58,6 +58,7 @@ export class AdminComponent implements OnInit {
     this.eId = this.authService.getEmployeeId();
     this.employeeService.getEmployees().subscribe(response => {
       this.employees = response.employees;
+      // add this extra employee called "All" for the drop down menu
       this.employees.push({"eId" : "All", "email" : "All", "password" : "All", "isAdmin" : "false"});
     });
   }

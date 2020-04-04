@@ -1,3 +1,9 @@
+/***********************************
+; Title:  Banner Component
+; Author: Kurt Leadley
+; Date:   30 March 2020
+; Description: banner component with dynamic page names
+***************************************************************/
 import { Component, OnInit } from "@angular/core";
 import { Location } from "@angular/common";
 import { Router } from "@angular/router";
@@ -12,6 +18,7 @@ export class BannerComponent implements OnInit {
   route: string;
   pageName: string;
   constructor(location: Location, router: Router) {
+    // this is used for determining the route and then naming the page. Example : Admin
     router.events.subscribe(val => {
       if (location.path() != "") {
         this.route = location.path();

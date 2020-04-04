@@ -22,6 +22,7 @@ export class SignupComponent {
       return;
     }
     this.isLoading = true;
+    // create an employee when submitting the form
     this.authService.createEmployee(form.value.eId, form.value.email, form.value.password, form.value.isAdmin);
   }
 }

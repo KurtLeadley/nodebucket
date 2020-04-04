@@ -6,6 +6,7 @@
 ***************************************************************/
 import { Component, OnInit } from '@angular/core';
 
+// just show the not found page when going to a bad route
 @Component({
   selector: 'app-notfound',
   templateUrl: './notfound.component.html',

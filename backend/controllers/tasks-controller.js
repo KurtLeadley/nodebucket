@@ -4,8 +4,12 @@
 ; Date:   31 March 2020
 ; Description: CRUD Controller for Task HTTP requests
 ***************************************************************/
+// use the task model
 const Task = require("../models/task-model");
 
+// database api controller
+
+// create task controller
 exports.createTask = (req, res, next) => {
   // use the Task model
   const task = new Task({
@@ -23,6 +27,7 @@ exports.createTask = (req, res, next) => {
   });
 }
 
+// edit task controller
 exports.editTask = (req, res, next) => {
   const task = new Task({
     _id: req.body.id,
@@ -41,6 +46,7 @@ exports.editTask = (req, res, next) => {
   });
 }
 
+// get all tasks controller
 exports.getAllTasks = (req, res, next) => {
   Task.find().then(documents => {
     res.status(200).json({
@@ -50,6 +56,7 @@ exports.getAllTasks = (req, res, next) => {
   });
 }
 
+// delete a task controller
 exports.deleteTask = (req, res, next) => {
   Task.deleteOne({ _id: req.params.id}).then(
     result => {
@@ -61,6 +68,7 @@ exports.deleteTask = (req, res, next) => {
   });
 }
 
+// get open tasks controller
 exports.getOpenTasks = (req, res, next) => {
   Task.find({"done": false}).then(documents => {
     res.status(200).json({
@@ -70,6 +78,7 @@ exports.getOpenTasks = (req, res, next) => {
   });
 }
 
+// get closed tasks controller
 exports.getClosedTasks =  (req, res, next) => {
   Task.find({"done": true}).then(documents => {
     res.status(200).json({
@@ -79,6 +88,7 @@ exports.getClosedTasks =  (req, res, next) => {
   });
 }
 
+// get all employees tasks controller
 exports.getAllEmployeeTasks = (req, res, next) => {
   console.log(req.params);
   Task.find({creator:req.params.eid}).then(documents => {
@@ -93,6 +103,7 @@ exports.getAllEmployeeTasks = (req, res, next) => {
   });
 }
 
+// get all open employee tasks controller
 exports.getAllOpenEmployeeTasks = (req, res, next) => {
   console.log(req.params);
   Task.find({creator:req.params.eid, done: false}).then(documents => {
@@ -107,6 +118,7 @@ exports.getAllOpenEmployeeTasks = (req, res, next) => {
   });
 }
 
+// get all closed employee tasks
 exports.getAllClosedEmployeeTasks = (req, res, next) => {
   console.log(req.params);
   Task.find({creator:req.params.eid, done: true}).then(documents => {
@@ -121,6 +133,7 @@ exports.getAllClosedEmployeeTasks = (req, res, next) => {
   });
 }
 
+// get a task by its id controller
 exports.getTaskById = (req, res, next) => {
   Task.findById(req.params.id).then(task => {
     if (task) {

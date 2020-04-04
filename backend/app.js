@@ -15,6 +15,7 @@ const employeeRoutes = require("./routes/employees");
 
 const app = express();
 
+// connect to our database
 mongoose
   // this is not a localhost mongodb instance, sign into mongoDB with bellevue account
   .connect(

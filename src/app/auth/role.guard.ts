@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
 import { AuthService } from "./auth.service";
 
 @Injectable()
+// this class if for determining if an admin is logged in
 export class RoleGuard implements CanActivate {
 
   constructor(private authService : AuthService, private router: Router) {}

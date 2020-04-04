@@ -9,6 +9,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Employee = require('../models/employee-model');
 
+// create employee controller
 exports.createEmployee = (req, res, next) => {
   bcrypt.hash(req.body.password, 10)
     .then (hash => {
@@ -35,6 +36,7 @@ exports.createEmployee = (req, res, next) => {
     });
 }
 
+// login controller
 exports.employeeLogin =  (req, res, next) => {
   let fetchedEmployee;
   Employee.findOne({ email: req.body.email })
@@ -56,6 +58,7 @@ exports.employeeLogin =  (req, res, next) => {
         message: "auth failed"
       });
     }
+    // create an auth token for 2 hours
     const token = jwt.sign(
       {email: fetchedEmployee.email, eId: fetchedEmployee.eId},
       process.env.JWT_KEY,
@@ -77,6 +80,7 @@ exports.employeeLogin =  (req, res, next) => {
   });
 }
 
+// get employee by id controller
 exports.getEmployeeById = (req, res, next) => {
   Employee.findById(req.params.eId).then(employee => {
     if (employee) {
@@ -90,6 +94,7 @@ exports.getEmployeeById = (req, res, next) => {
   });
 }
 
+// get all employees controller
 exports.getAllEmployees = (req, res, next) => {
   Employee.find().then(documents => {
     res.status(200).json({

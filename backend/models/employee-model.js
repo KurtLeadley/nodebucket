@@ -16,5 +16,5 @@ const employeeSchema = mongoose.Schema({
 });
 // enforce the email validator
 employeeSchema.plugin(uniqueValidator);
-// export model for use in other modules / components
+// export model for use in other modules and components
 module.exports = mongoose.model('Employee', employeeSchema);

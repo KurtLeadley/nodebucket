@@ -7,8 +7,10 @@
 // import node dependencies and employee model
 const express = require('express');
 
+// use our employee controller functions when reaching the following routes below
 const EmployeeController = require("../controllers/employees-controller");
 
+// use express router
 const router = express.Router();
 
 // create employee

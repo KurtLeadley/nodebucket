@@ -1,3 +1,9 @@
+/***********************************
+; Title:  Footer Component
+; Author: Kurt Leadley
+; Date:   30 March 2020
+; Description: Footer component with back to top
+***************************************************************/
 import { Component, HostListener, ElementRef } from '@angular/core';
 
 @Component({
@@ -7,14 +13,13 @@ import { Component, HostListener, ElementRef } from '@angular/core';
 })
 export class FooterComponent  {
 
+  // back to top button logic
   isShow: boolean;
   topPosToStartShowing = 100;
 
   @HostListener('window:scroll')
   checkScroll() {
       
-
-
     const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
 
     console.log('[scroll]', scrollPosition);

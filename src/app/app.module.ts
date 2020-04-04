@@ -11,6 +11,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 // import Angular Material
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,6 +23,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatSelectModule} from '@angular/material/select';
+
 
 // these are custom modules and components
 import { AppRoutingModule } from './app-routing.module';
@@ -70,7 +72,8 @@ import { FooterComponent } from './footer/footer.component';
     MatMenuModule,
     MatSelectModule,
     HttpClientModule,
-    DragDropModule
+    DragDropModule,
+    FlexLayoutModule
   ],
   // add some interceptors for handling auth on page refresh / navigation
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],

@@ -12,6 +12,7 @@ import { Subject } from 'rxjs';
 import { AuthData } from './auth-data-model';
 import { environment } from '../../environments/environment';
 
+// get our base url
 const BACKEND_URL =  environment.apiUrl + "/employees";
 
 @Injectable({ providedIn: "root"})
@@ -26,7 +27,7 @@ export class AuthService {
   private authStatusListener = new Subject<boolean>();
 
   constructor(private http: HttpClient, private router: Router) {}
-
+  // class methods for the AuthService 
   getToken() {
     return this.token;
   }
@@ -49,6 +50,7 @@ export class AuthService {
   getIsAdmin() {
     return this.isAdmin;
   }
+  // create employee http post
   createEmployee(eId: string, email:string, password: string, isAdmin: string) {
     const authData: AuthData = {eId: eId, email: email, password: password, isAdmin: isAdmin};
     this.http.post( BACKEND_URL + "/signup", authData)
@@ -57,7 +59,7 @@ export class AuthService {
         this.router.navigate(['/']);
       });
   }
-
+  // login http post
   login(eId: string, email:string, password:string, isAdmin:string) {
     const authData: AuthData = {eId: eId, email: email, password: password, isAdmin: isAdmin};
     this.http.post<{token:string, expiresIn: number, eId: string, email: string, isAdmin: string}>(BACKEND_URL + "/login", authData)
@@ -75,6 +77,7 @@ export class AuthService {
           const now = new Date();
           const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
           this.saveAuthData(token, expirationDate, this.eId, this.email, this.isAdmin);
+          // navigate to homepage after a successful login
           this.router.navigate(['/']);
         }
         console.log(response);
@@ -89,6 +92,7 @@ export class AuthService {
     }
     const now = new Date();
     const expiresIn = authInformation.expirationDate.getTime() - now.getTime();
+    // is authenticated if there is still time left
     if (expiresIn > 0) {
       this.token = authInformation.token;
       this.isAuthenticated = true;
@@ -99,7 +103,7 @@ export class AuthService {
       this.authStatusListener.next(true);
     }
   }
-
+  // clear our all the auth data on logout
   logout() {
     this.token = null;
     this.isAuthenticated = false;

@@ -35,7 +35,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
     this.eId = this.authService.getEmployeeId();
     this.isAdmin = this.authService.getIsAdmin();
 
-
+    // list all tasks on load
     this.tasksService.getTasks();
     this.tasksSub = this.tasksService.getTaskUpdateListener()
       .subscribe((allTasks: Task[]) => {

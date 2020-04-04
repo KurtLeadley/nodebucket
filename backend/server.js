@@ -53,6 +53,7 @@ const onListening = () => {
   debug("Listening on " + bind);
 };
 
+// use 3000 on localhost or whatever the port is in a live app
 const port = normalizePort(process.env.PORT || "3000");
 app.set("port", port);
 

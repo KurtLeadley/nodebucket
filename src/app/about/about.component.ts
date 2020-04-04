@@ -6,6 +6,7 @@
 ***************************************************************/
 import { Component, OnInit } from '@angular/core';
 
+// not much going on in this module
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',

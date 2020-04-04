@@ -75,6 +75,7 @@ export class TaskCreateComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
+    // create or update task, based on mode
     if (this.mode === "create") {
       this.tasksService.addTask(this.form.value.title, this.form.value.content, this.form.value.creator, this.form.value.done);
     } else {
