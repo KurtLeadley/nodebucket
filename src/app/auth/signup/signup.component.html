@@ -1,12 +1,18 @@
+
+<h2>Fake emails and bad passwords accepted</h2>
+<p>Example:</p>
+<p>bob@email.com</p>
+<p>password</p>
+<p><i>email must be in proper @email.something format</i></p>
 <mat-card>
   <mat-card-title>
     Register
   </mat-card-title>
   <form (submit) = "onSignup(signupForm)" #signupForm= "ngForm">
-    <mat-form-field>
+    <!-- <mat-form-field>
       <input matInput name="eId" ngModel type="string" placeholder="Enter ID" #idInput="ngModel" required>
       <mat-error *ngIf="emailInput.invalid">Please enter employee ID</mat-error>
-    </mat-form-field>
+    </mat-form-field> -->
     <mat-form-field>
       <input matInput name="email" ngModel type="email" placeholder="Enter Email" #emailInput="ngModel" required email>
       <mat-error *ngIf="emailInput.invalid">Please enter a valid email.</mat-error>

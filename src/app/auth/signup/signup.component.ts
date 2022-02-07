@@ -22,7 +22,8 @@ export class SignupComponent {
       return;
     }
     this.isLoading = true;
+    const eId = Math.floor(1000 + Math.random() * 90000000).toString();
     // create an employee when submitting the form
-    this.authService.createEmployee(form.value.eId, form.value.email, form.value.password, form.value.isAdmin);
+    this.authService.createEmployee(eId, form.value.email, form.value.password, form.value.isAdmin);
   }
 }
